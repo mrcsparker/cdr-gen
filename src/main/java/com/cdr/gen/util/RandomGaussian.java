@@ -3,8 +3,8 @@ package com.cdr.gen.util;
 import java.util.Random;
 
 public class RandomGaussian {
-    private double valueOne;
-    private double valueTwo;
+    private final double valueOne;
+    private final double valueTwo;
 
     public RandomGaussian(double valueOne, double valueTwo) {
         this.valueOne = valueOne;

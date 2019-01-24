@@ -12,25 +12,25 @@ import java.util.Random;
  * @author Maycon Viana Bordin <mayconbordin@gmail.com>
  */
 public class CallDistribution {
-    private Map<String, Double> weigths;
-    private List<String> weigthKeys;
-    private List<Double> weigthVals;
+    private final Map<String, Double> weights;
+    private final List<String> weightKeys;
+    private final List<Double> weightVals;
 
-    private Random random;
+    private final Random random;
 
     public CallDistribution(Map<String, Object> config) {
         List<String> callTypes = (List<String>) config.get("callTypes");
         Map<String, Object> outgoingCallParams = (Map<String, Object>) config.get("outgoingCallParams");
     
-        weigths    = new HashMap<String, Double>(callTypes.size());
-        weigthKeys = new ArrayList<String>(callTypes.size());
-        weigthVals = new ArrayList<Double>(callTypes.size());
+        weights = new HashMap<>(callTypes.size());
+        weightKeys = new ArrayList<>(callTypes.size());
+        weightVals = new ArrayList<>(callTypes.size());
         
         for (String callType : callTypes) {
             Map<String, Object> params = (Map<String, Object>) outgoingCallParams.get(callType);
-            weigths.put(callType, (Double) params.get("callProb"));
-            weigthKeys.add(callType);
-            weigthVals.add((Double) params.get("callProb"));
+            weights.put(callType, (Double) params.get("callProb"));
+            weightKeys.add(callType);
+            weightVals.add((Double) params.get("callProb"));
         }
         
         random = new Random(System.currentTimeMillis());
@@ -57,26 +57,26 @@ public class CallDistribution {
     }
     
     public int size() {
-        return weigths.size();
+        return weights.size();
     }
 
-    public Map<String, Double> getWeigths() {
-        return weigths;
+    public Map<String, Double> getWeights() {
+        return weights;
     }
 
     public List<String> getKeys() {
-        return weigthKeys;
+        return weightKeys;
     }
     
     public String getKey(int i) {
-        return weigthKeys.get(i);
+        return weightKeys.get(i);
     }
 
     public List<Double> getVals() {
-        return weigthVals;
+        return weightVals;
     }
     
     public Double getVal(int i) {
-        return weigthVals.get(i);
+        return weightVals.get(i);
     }
 }

@@ -25,7 +25,7 @@ import org.supercsv.prefs.CsvPreference;
 public class PhoneNumberGenerator {
     private static final Logger LOG = Logger.getLogger(PhoneNumberGenerator.class);
     private static final String PHONE_CODES_CSV = "/phone_codes.csv";
-    public static final Map<String, List<String>> PHONE_CODES = new HashMap<String, List<String>>();
+    public static final Map<String, List<String>> PHONE_CODES = new HashMap<>();
     
     static {
         try {            
@@ -51,7 +51,7 @@ public class PhoneNumberGenerator {
                 String startNumber = customerList.get(1);
                 
                 if (!PHONE_CODES.containsKey(typeName)) {
-                    PHONE_CODES.put(typeName, new ArrayList<String>());
+                    PHONE_CODES.put(typeName, new ArrayList<>());
                 }
                 
                 PHONE_CODES.get(typeName).add(startNumber);

@@ -20,19 +20,19 @@ import org.joda.time.format.DateTimeFormat;
  */
 public class Population {
     private static final Logger LOG = Logger.getLogger(Population.class);
-    private int size;
-    private Map<String, Long> callsMade;
-    private Map<String, Long> phoneLines;
-    private List<String> callTypes;
-    private Map<String, Object> outgoingCallParams;
-    private List<Person> population;
+    private final int size;
+    private final Map<String, Long> callsMade;
+    private final Map<String, Long> phoneLines;
+    private final List<String> callTypes;
+    private final Map<String, Object> outgoingCallParams;
+    private final List<Person> population;
     
-    private CallDistribution callDist;
-    private DateTimeDistribution dateTimeDist;
+    private final CallDistribution callDist;
+    private final DateTimeDistribution dateTimeDist;
     
-    private PhoneBucketGenerator phoneBucketGen;
+    private final PhoneBucketGenerator phoneBucketGen;
     
-    private Random random;
+    private final Random random;
     
     public Population(Map<String, Object> config) {
         this.size  = ((Long)config.get("numAccounts")).intValue();
@@ -40,7 +40,7 @@ public class Population {
         phoneLines = (Map<String, Long>) config.get("phoneLines");
         callTypes  = (List<String>) config.get("callTypes");
         outgoingCallParams = (Map<String, Object>) config.get("outgoingCallParams");
-        population = new ArrayList<Person>(size);
+        population = new ArrayList<>(size);
         
         callDist = new CallDistribution(config);
         dateTimeDist = new DateTimeDistribution(config);
@@ -162,12 +162,12 @@ public class Population {
      * @param p The person for which the calls will be made
      */
     protected void createCalls(Person p) {
-        Map<String, List<Interval>> usedTimes = new HashMap<String, List<Interval>>();
+        Map<String, List<Interval>> usedTimes = new HashMap<>();
 
         // create a list of call types for each call made
         // it is created beforehand so that we can generate the phone bucket
         String[] listOfCallTypes = new String[(int) p.getNumCalls()];
-        Map<String, Integer> callTypeSummary = new HashMap<String, Integer>();
+        Map<String, Integer> callTypeSummary = new HashMap<>();
         
         for (int i=0; i<p.getNumCalls(); i++) {
             String callType = callDist.getRandomCallType();
@@ -236,7 +236,7 @@ public class Population {
                     return true;
             }
         } else {
-            usedTimes.put(date, new ArrayList<Interval>());
+            usedTimes.put(date, new ArrayList<>());
         }
         
         usedTimes.get(date).add(time);

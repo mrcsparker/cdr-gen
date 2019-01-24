@@ -17,8 +17,8 @@ public class Person {
     private long numCalls;
     
     // model information about the call spread
-    private Map<String, Long> avgCallDuration = new HashMap<String, Long>();
-    private Map<String, Long> avgOffPeakCallDuration = new HashMap<String, Long>();
+    private Map<String, Long> avgCallDuration = new HashMap<>();
+    private Map<String, Long> avgOffPeakCallDuration = new HashMap<>();
     
     private List<Call> calls;
 
@@ -44,7 +44,7 @@ public class Person {
 
     public void setNumCalls(long numCalls) {
         this.numCalls = numCalls;
-        this.calls = new ArrayList<Call>(((Long)numCalls).intValue());
+        this.calls = new ArrayList<>(((Long) numCalls).intValue());
     }
 
     public Map<String, Long> getAvgCallDuration() {

@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Maycon Viana Bordin <mayconbordin@gmail.com>
  */
 public class PhoneBucketGenerator {
-    private Map<String, Object> outgoingNumberDist;
+    private final Map<String, Object> outgoingNumberDist;
 
     public PhoneBucketGenerator(Map<String, Object> config) {
         outgoingNumberDist = (Map<String, Object>) config.get("outgoingNumberDistribution");
@@ -26,7 +26,7 @@ public class PhoneBucketGenerator {
      */
     public Map<String, List<String>> createPhoneBucket(Person p, Map<String, Integer> callTypeSummary) {
         Map<String, Long> params;
-        Map<String, List<String>> destPhoneNumbers = new HashMap<String, List<String>>(callTypeSummary.size());
+        Map<String, List<String>> destPhoneNumbers = new HashMap<>(callTypeSummary.size());
         
         for (Map.Entry<String, Integer> e : callTypeSummary.entrySet()) {
             params = (Map<String, Long>) outgoingNumberDist.get(e.getKey());
@@ -38,7 +38,7 @@ public class PhoneBucketGenerator {
             int phoneCount = (count > 0) ? count.intValue() : 1;
             
             if (!destPhoneNumbers.containsKey(e.getKey())) {
-                destPhoneNumbers.put(e.getKey(), new ArrayList<String>(phoneCount));
+                destPhoneNumbers.put(e.getKey(), new ArrayList<>(phoneCount));
             }
             
             String phoneNumber;

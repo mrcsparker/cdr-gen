@@ -37,7 +37,7 @@ public class DateTimeDistribution {
     
     public static final String[] DAYS = new String[]{"sun", "mon", "tue", "wed", "thu", "fri", "sat"};
     
-    private Map<String, Object> outgoingCallParams;
+    private final Map<String, Object> outgoingCallParams;
     private LocalTime offPeakStart;
     private LocalTime offPeakEnd;
     
@@ -46,11 +46,11 @@ public class DateTimeDistribution {
     
     private Map<String, Map<String, Double>> timeDistribution;
 
-    private DateTime startDate;
-    private DateTime endDate;
-    private int dateRange;
+    private final DateTime startDate;
+    private final DateTime endDate;
+    private final int dateRange;
     
-    private Random random;
+    private final Random random;
 
     public DateTimeDistribution(Map<String, Object> config) {
         outgoingCallParams = (Map<String, Object>) config.get("outgoingCallParams");
@@ -78,8 +78,8 @@ public class DateTimeDistribution {
     }
     
     public void loadDayDist(Map<String, Double> params) {
-        dayDistribution = new HashMap<String, Double>(DAYS.length);
-        dayDistributionVals = new ArrayList<Double>(DAYS.length);
+        dayDistribution = new HashMap<>(DAYS.length);
+        dayDistributionVals = new ArrayList<>(DAYS.length);
         
         for (String day : DAYS) {
             dayDistribution.put(day, params.get(day));
@@ -88,8 +88,8 @@ public class DateTimeDistribution {
     }
     
     public void loadTimeDist(String filename) {
-        timeDistribution = new HashMap<String, Map<String, Double>>();
-        Map<String, List<Double>> timeDistributionVals = new HashMap<String, List<Double>>();
+        timeDistribution = new HashMap<>();
+        Map<String, List<Double>> timeDistributionVals = new HashMap<>();
         
         try {
             ICsvListReader listReader;
@@ -118,11 +118,11 @@ public class DateTimeDistribution {
                 
 
                 if (!timeDistribution.containsKey(type)) {
-                    timeDistribution.put(type, new HashMap<String, Double>());
+                    timeDistribution.put(type, new HashMap<>());
                 }
                 
                 if (!timeDistributionVals.containsKey(type)) {
-                    timeDistributionVals.put(type, new ArrayList<Double>());
+                    timeDistributionVals.put(type, new ArrayList<>());
                 }
 
                 timeDistribution.get(type).put(time, prob);

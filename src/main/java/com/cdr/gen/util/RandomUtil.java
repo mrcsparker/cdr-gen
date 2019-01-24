@@ -3,7 +3,7 @@ package com.cdr.gen.util;
 import java.util.Random;
 
 public class RandomUtil {
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
     /**
      * Returns a pseudo-random number between min and max, inclusive.
      * The difference between min and max can be at most
@@ -22,17 +22,14 @@ public class RandomUtil {
 
         // nextInt is normally exclusive of the top value,
         // so add 1 to make it inclusive
-        int randomNum = rand.nextInt((max - min) + 1) + min;
 
-        return randomNum;
+        return rand.nextInt((max - min) + 1) + min;
     }
     
     public static double randDouble(double min, double max) {
         //Random rand = new Random();
         rand.setSeed(System.currentTimeMillis());
-        
-        double randomNum = min + (rand.nextDouble() * ((max - min) + 1));
 
-        return randomNum;
+        return min + (rand.nextDouble() * ((max - min) + 1));
     }
 }
