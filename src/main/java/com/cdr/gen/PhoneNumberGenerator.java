@@ -73,12 +73,12 @@ public class PhoneNumberGenerator {
     public static String getRandomNumber(int numDigits) {
         Random rnd = new Random(System.currentTimeMillis());
         
-        String number = "";
+        StringBuilder number = new StringBuilder();
         for (int i=0; i<numDigits; i++) {
-            number += RandomUtil.randInt(0, 9);
+            number.append(RandomUtil.randInt(0, 9));
         }
         
-        return number;
+        return number.toString();
     }
     
     /**
@@ -89,7 +89,7 @@ public class PhoneNumberGenerator {
      */
     public static String getRandomPhoneCode(String callType, String currCode) {
         int num;
-        String code = "";
+        String code;
         
         if (!PHONE_CODES.containsKey(callType)) {
             return null;

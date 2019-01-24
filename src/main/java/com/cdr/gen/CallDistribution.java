@@ -15,15 +15,12 @@ public class CallDistribution {
     private Map<String, Double> weigths;
     private List<String> weigthKeys;
     private List<Double> weigthVals;
-    
-    private List<String> callTypes;
-    private Map<String, Object> outgoingCallParams;
-    
+
     private Random random;
 
     public CallDistribution(Map<String, Object> config) {
-        callTypes = (List<String>) config.get("callTypes");
-        outgoingCallParams = (Map<String, Object>) config.get("outgoingCallParams");
+        List<String> callTypes = (List<String>) config.get("callTypes");
+        Map<String, Object> outgoingCallParams = (Map<String, Object>) config.get("outgoingCallParams");
     
         weigths    = new HashMap<String, Double>(callTypes.size());
         weigthKeys = new ArrayList<String>(callTypes.size());

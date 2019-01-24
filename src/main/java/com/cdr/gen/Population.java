@@ -95,8 +95,8 @@ public class Population {
                     personOne.setPhoneLines(gaussNum.getValueOne().intValue());
                     personTwo.setPhoneLines(gaussNum.getValueTwo().intValue());
                 } else {
-                    personOne.setPhoneLines(((Long)phoneLines.get("mean")).intValue());
-                    personTwo.setPhoneLines(((Long)phoneLines.get("mean")).intValue());
+                    personOne.setPhoneLines(phoneLines.get("mean").intValue());
+                    personTwo.setPhoneLines(phoneLines.get("mean").intValue());
                 }
             } else {
                 personOne.setPhoneLines(1);
@@ -152,6 +152,7 @@ public class Population {
      */
     protected String getRandomPhoneNumber() {
         String code = PhoneNumberGenerator.getRandomPhoneCode("Local", "");
+        assert code != null;
         return code + PhoneNumberGenerator.getRandomNumber(11 - code.length());
     }
     

@@ -49,6 +49,7 @@ public class PhoneBucketGenerator {
                     phoneNumber = code + PhoneNumberGenerator.getRandomNumber(7);
                 } else {
                     String destCode = PhoneNumberGenerator.getRandomPhoneCode(e.getKey(), code);
+                    assert destCode != null;
                     phoneNumber = destCode + PhoneNumberGenerator.getRandomNumber(11 - destCode.length());
                 }
 

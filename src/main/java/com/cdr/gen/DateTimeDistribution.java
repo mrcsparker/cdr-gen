@@ -45,11 +45,7 @@ public class DateTimeDistribution {
     private List<Double> dayDistributionVals;
     
     private Map<String, Map<String, Double>> timeDistribution;
-    private Map<String, List<Double>> timeDistributionVals;
-    
-    private DateTimeFormatter dateFormatter;
-    private DateTimeFormatter dateTimeFormatter;
-    
+
     private DateTime startDate;
     private DateTime endDate;
     private int dateRange;
@@ -61,9 +57,9 @@ public class DateTimeDistribution {
 
         loadOffPeakTimePeriod((Map<String, String>) config.get("offPeakTimePeriod"));
         loadDayDist((Map<String, Double>) config.get("dayDistribution"));
-        
-        dateFormatter = DateTimeFormat.forPattern("dd/MM/yyyy");
-        dateTimeFormatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
+
+        DateTimeFormatter dateFormatter = DateTimeFormat.forPattern("dd/MM/yyyy");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
         
         startDate = dateFormatter.parseDateTime((String)config.get("startDate"));
         endDate = dateFormatter.parseDateTime((String)config.get("endDate"));
@@ -93,7 +89,7 @@ public class DateTimeDistribution {
     
     public void loadTimeDist(String filename) {
         timeDistribution = new HashMap<String, Map<String, Double>>();
-        timeDistributionVals = new HashMap<String, List<Double>>();
+        Map<String, List<Double>> timeDistributionVals = new HashMap<String, List<Double>>();
         
         try {
             ICsvListReader listReader;

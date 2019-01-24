@@ -72,17 +72,17 @@ public final class CDRGen {
             
             for (Person p : customers) {
                 for (Call c : p.getCalls()) {
-                    fw.append(c.getId() + ","
-                            + p.getPhoneNumber() + ","
-                            + c.getLine() + ","
-                            + c.getDestPhoneNumber() + ","
-                            + c.getTime().getStart().toString(dateFormatter) + "," 
-                            + c.getTime().getEnd().toString(dateFormatter) + "," 
-                            + c.getTime().getStart().toString(timeFormatter) + "," 
-                            + c.getTime().getEnd().toString(timeFormatter) + ","
-                            + c.getType() + ","
-                            + c.getCost()
-                            + newLine);
+                    fw
+                            .append(String.valueOf(c.getId())).append(",")
+                            .append(p.getPhoneNumber()).append(",")
+                            .append(String.valueOf(c.getLine())).append(",")
+                            .append(c.getDestPhoneNumber()).append(",")
+                            .append(c.getTime().getStart().toString(dateFormatter)).append(",")
+                            .append(c.getTime().getEnd().toString(dateFormatter)).append(",")
+                            .append(c.getTime().getStart().toString(timeFormatter)).append(",")
+                            .append(c.getTime().getEnd().toString(timeFormatter)).append(",")
+                            .append(c.getType()).append(",")
+                            .append(String.valueOf(c.getCost())).append(newLine);
                 }
             }
 
